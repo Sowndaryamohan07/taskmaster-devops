@@ -28,5 +28,8 @@ jobs:
      -  name: Build Springboot Application
         run: mvn clean package
 
+     -  name: Check Docker version
+        run: docker --version
+
 
 
