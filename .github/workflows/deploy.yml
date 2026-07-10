@@ -44,5 +44,22 @@ jobs:
      -  name: Verify credentials
         run: aws sts get-caller-identity
 
+     -  name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+     -  name: Build Docker Image
+        run: |
+          docker build -t taskmaster.${{ github.sha }} .
+          docker tag taskmaster.${{ github.sha }} \
+            ${{ steps.login-ecr.outputs.registry }}/taskmaster.${{ github.sha }}
+ 
+
+     -  name: Push Docker Image
+        run: |
+          docker push \ 
+            ${{ steps.login-ecr.outputs.registry }}/taskmaster.${{ github.sha }}
+
+
 
 
