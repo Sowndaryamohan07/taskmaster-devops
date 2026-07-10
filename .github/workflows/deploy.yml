@@ -18,5 +18,8 @@ jobs:
      -  name: List repository files
         run: ls -la
 
+     -  name: check java versiom
+        run: java --version
+
 
 
