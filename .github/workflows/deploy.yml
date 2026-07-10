@@ -12,8 +12,11 @@ jobs:
 
     steps:
 
-     -  name: print Hello
-        run: echo "Hello from Github Actions!"
+     -  name: Checkout Repository
+        uses: actions/checkout@v4
+
+     -  name: List repository files
+        run: ls -la
 
 
 
