@@ -64,7 +64,7 @@ jobs:
           aws ecs describe-task-definition \
             --task-definition taskmaster \
             --query taskDefinition \
-            > taskdefinition.json
+            > task-definition.json
 
      - name: Render New Task Definition
        id: task-def
