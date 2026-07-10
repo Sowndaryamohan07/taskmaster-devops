@@ -25,8 +25,8 @@ jobs:
           java-version: '17'
 
 
-     -  name: check java versiom
-        run: java --version
+     -  name: Build Springboot Application
+        run: mvn clean package
 
 
 
