@@ -63,7 +63,7 @@ jobs:
         run: |
           aws ecs describe-task-definition \
             --task-definition taskmaster \
-            --query-taskDefinition \
+            --query taskDefinition \
             > taskdefinition.json
 
      - name: Render New Task Definition
