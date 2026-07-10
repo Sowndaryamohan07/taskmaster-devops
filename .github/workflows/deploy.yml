@@ -18,6 +18,13 @@ jobs:
      -  name: List repository files
         run: ls -la
 
+     -  name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+
      -  name: check java versiom
         run: java --version
 
