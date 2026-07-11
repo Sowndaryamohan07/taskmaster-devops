@@ -45,6 +45,10 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Print ECR Registry
+        run: |
+          echo "Registry: ${{ steps.login-ecr.outputs.registry }}"
+
       - name: Build and Tag Docker Image
         run: |
           docker build -t ${{ env.ECR_REPOSITORY }}:${{ github.sha }} .
@@ -55,6 +59,13 @@ jobs:
         run: |
           docker push \
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+
+      - name: Verify Image in ECR
+        run: |
+          aws ecr describe-images \
+          --repository-name ${{ env.ECR_REPOSITORY }} \
+          --region ${{ env.AWS_REGION }}
 
   deploy:
     runs-on: ubuntu-latest

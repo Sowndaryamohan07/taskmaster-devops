@@ -1,4 +1,5 @@
 resource "aws_ecs_service" "main" {
+
   name            = "${local.project_name}-${var.environment}-service"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.main.id
@@ -25,4 +26,7 @@ resource "aws_ecs_service" "main" {
     container_port   = 8080
   }
 
+  depends_on = [
+    aws_lb_listener.http
+  ]
 }
