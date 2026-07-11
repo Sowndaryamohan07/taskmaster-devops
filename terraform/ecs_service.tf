@@ -21,8 +21,8 @@ resource "aws_ecs_service" "main" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.main.arn
-    container_name = local.project_name
-    container_port = 8080
+    container_name   = local.project_name
+    container_port   = 8080
   }
 
 }
